@@ -5,5 +5,21 @@
     "menu1": "Getting Started",
     "menu2": "Components",
     "menu3": "Documentation"
+  },
+  "SideBar": {
+    "nav-main-title-1": "Playground",
+    "nav-main-title-2": "Models",
+    "nav-main-title-3": "Documentation",
+    "nav-main-title-4": "Settings",
+    "nav-main-sub-title-1": "Playground",
+    "nav-main-sub-title-2": "Models",
+    "nav-main-sub-title-3": "Documentation",
+    "nav-main-sub-title-4": "Settings",
+    "nav-report-title-1": "Incoming",
+    "nav-report-title-2": "Resolved",
+    "nav-report-title-3": "Overall",
+    "nav-report-sub-title-1": "Playground",
+    "nav-report-sub-title-2": "Models",
+    "nav-report-sub-title-3": "Documentation"
   }
 }
