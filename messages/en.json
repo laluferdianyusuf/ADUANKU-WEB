@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page",
+    "menu1": "Getting Started",
+    "menu2": "Components",
+    "menu3": "Documentation"
+  }
+}
