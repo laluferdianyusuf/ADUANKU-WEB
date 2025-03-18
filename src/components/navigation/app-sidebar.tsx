@@ -28,7 +28,16 @@ import {
 import { NavReport } from "./nav-reports";
 import { useTranslations } from "next-intl";
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  handleHistory,
+  handleStarred,
+  handleSetting,
+  ...props
+}: {
+  handleHistory: () => void;
+  handleStarred: () => void;
+  handleSetting: () => void;
+} & React.ComponentProps<typeof Sidebar>) {
   const t = useTranslations("SideBar");
   const data = {
     user: {
@@ -63,14 +72,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           {
             title: "History",
             url: "#",
+            name: "history",
+            onClick: handleHistory,
           },
           {
             title: "Starred",
             url: "#",
+            name: "starred",
+            onClick: handleStarred,
           },
           {
             title: "Settings",
             url: "#",
+            name: "settings",
+            onClick: handleSetting,
           },
         ],
       },

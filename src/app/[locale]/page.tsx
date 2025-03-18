@@ -1,3 +1,4 @@
+"use client";
 import { AppSidebar } from "@/components/navigation/app-sidebar";
 import Switcher from "@/components/Switcher";
 import { ModeToggle } from "@/components/ToggleThemes";
@@ -15,11 +16,78 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useState } from "react";
 
 export default function Home() {
+  const [activeMenu, setActiveMenu] = useState<string>("history");
+
+  const handleHistoryClick = () => {
+    setActiveMenu("history");
+  };
+  const handleStarredClick = () => {
+    setActiveMenu("starred");
+  };
+  const handleSettingClick = () => {
+    setActiveMenu("settings");
+  };
+
+  const renderContent = () => {
+    switch (activeMenu) {
+      case "history":
+        return (
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+          </div>
+        );
+      case "starred":
+        return (
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-red-200/50" />
+              <div className="aspect-video rounded-xl bg-red-200/50" />
+              <div className="aspect-video rounded-xl bg-red-200/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-red-200/50 md:min-h-min" />
+          </div>
+        );
+      case "settings":
+        return (
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-blue-300/50" />
+              <div className="aspect-video rounded-xl bg-blue-300/50" />
+              <div className="aspect-video rounded-xl bg-blue-300/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-blue-300/50 md:min-h-min" />
+          </div>
+        );
+
+      default:
+        return (
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+          </div>
+        );
+    }
+  };
+
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar
+        handleHistory={handleHistoryClick}
+        handleStarred={handleStarredClick}
+        handleSetting={handleSettingClick}
+      />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between">
           <div className="flex items-center gap-2 px-4">
@@ -45,12 +113,7 @@ export default function Home() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+          {renderContent()}
         </div>
       </SidebarInset>
     </SidebarProvider>
