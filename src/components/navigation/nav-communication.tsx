@@ -27,7 +27,7 @@ import {
 } from "../ui/dropdown-menu";
 import { useTranslations } from "next-intl";
 
-export function NavMain({
+export function NavCommunication({
   items,
 }: {
   items: {
@@ -47,7 +47,7 @@ export function NavMain({
   const t = useTranslations("SideBar");
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{t("sidebar-tittle-1")}</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("sidebar-tittle-4")}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

@@ -19,32 +19,35 @@ import {
 import { useState } from "react";
 
 export default function Home() {
-  const [activeMenu, setActiveMenu] = useState<string>("history");
+  const [activeMenu, setActiveMenu] = useState<string>("dashboard");
 
-  const handleHistoryClick = () => {
-    setActiveMenu("history");
+  const handleDashboard = () => {
+    setActiveMenu("dashboard");
   };
-  const handleStarredClick = () => {
-    setActiveMenu("starred");
+  const handleListCom = () => {
+    setActiveMenu("list_complaint");
   };
-  const handleSettingClick = () => {
-    setActiveMenu("settings");
+  const handleCreateCom = () => {
+    setActiveMenu("create_complaint");
+  };
+  const handleArchiveCom = () => {
+    setActiveMenu("archive_complaint");
   };
 
   const renderContent = () => {
     switch (activeMenu) {
-      case "history":
+      case "dashboard":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-muted/50" />
               <div className="aspect-video rounded-xl bg-muted/50" />
-              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50"></div>
             </div>
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
           </div>
         );
-      case "starred":
+      case "list_complaint":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -55,7 +58,7 @@ export default function Home() {
             <div className="min-h-[100vh] flex-1 rounded-xl bg-red-200/50 md:min-h-min" />
           </div>
         );
-      case "settings":
+      case "create_complaint":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -64,6 +67,17 @@ export default function Home() {
               <div className="aspect-video rounded-xl bg-blue-300/50" />
             </div>
             <div className="min-h-[100vh] flex-1 rounded-xl bg-blue-300/50 md:min-h-min" />
+          </div>
+        );
+      case "archive_complaint":
+        return (
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-green-300/50" />
+              <div className="aspect-video rounded-xl bg-green-300/50" />
+              <div className="aspect-video rounded-xl bg-green-300/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-green-300/50 md:min-h-min" />
           </div>
         );
 
@@ -84,9 +98,10 @@ export default function Home() {
   return (
     <SidebarProvider>
       <AppSidebar
-        handleHistory={handleHistoryClick}
-        handleStarred={handleStarredClick}
-        handleSetting={handleSettingClick}
+        handleDashboard={handleDashboard}
+        handleListCom={handleListCom}
+        handleCreateCom={handleCreateCom}
+        handleArchiveCom={handleArchiveCom}
       />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between">

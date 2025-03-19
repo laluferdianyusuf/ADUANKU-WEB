@@ -10,8 +10,16 @@ import {
   GalleryVerticalEnd,
   Map,
   PieChart,
-  Settings2,
   SquareTerminal,
+  Building2,
+  LayoutList,
+  FilePlus,
+  BookUser,
+  UserRoundCog,
+  MessageCircleDashed,
+  Bell,
+  ChartArea,
+  Archive,
 } from "lucide-react";
 
 import { NavMain } from "@/components/navigation/nav-main";
@@ -27,16 +35,22 @@ import {
 } from "@/components/ui/sidebar";
 import { NavReport } from "./nav-reports";
 import { useTranslations } from "next-intl";
+import { NavComplaint } from "./nav-complaint";
+import { NavUserOfficer } from "./nav-user-officer";
+import { NavCommunication } from "./nav-communication";
+import { NavAnalytics } from "./nav-analytics";
 
 export function AppSidebar({
-  handleHistory,
-  handleStarred,
-  handleSetting,
+  handleDashboard,
+  handleListCom,
+  handleCreateCom,
+  handleArchiveCom,
   ...props
 }: {
-  handleHistory: () => void;
-  handleStarred: () => void;
-  handleSetting: () => void;
+  handleDashboard: () => void;
+  handleListCom: () => void;
+  handleCreateCom: () => void;
+  handleArchiveCom: () => void;
 } & React.ComponentProps<typeof Sidebar>) {
   const t = useTranslations("SideBar");
   const data = {
@@ -47,7 +61,7 @@ export function AppSidebar({
     },
     teams: [
       {
-        name: "Acme Inc",
+        name: "TPDOTCOM",
         logo: GalleryVerticalEnd,
         plan: "Enterprise",
       },
@@ -66,93 +80,73 @@ export function AppSidebar({
       {
         title: t("nav-main-title-1"),
         url: "#",
-        icon: SquareTerminal,
-        isActive: true,
-        items: [
-          {
-            title: "History",
-            url: "#",
-            name: "history",
-            onClick: handleHistory,
-          },
-          {
-            title: "Starred",
-            url: "#",
-            name: "starred",
-            onClick: handleStarred,
-          },
-          {
-            title: "Settings",
-            url: "#",
-            name: "settings",
-            onClick: handleSetting,
-          },
-        ],
+        icon: Building2,
+        isActive: false,
+        onClick: handleDashboard,
+      },
+    ],
+    NavComplaint: [
+      {
+        title: t("nav-complaint-title-1"),
+        url: "#",
+        icon: LayoutList,
+        isActive: false,
+        onClick: handleListCom,
       },
       {
-        title: t("nav-main-title-2"),
+        title: t("nav-complaint-title-2"),
         url: "#",
-        icon: Bot,
-        items: [
-          {
-            title: "Genesis",
-            url: "#",
-          },
-          {
-            title: "Explorer",
-            url: "#",
-          },
-          {
-            title: "Quantum",
-            url: "#",
-          },
-        ],
+        icon: FilePlus,
+        isActive: false,
+        onClick: handleCreateCom,
       },
       {
-        title: t("nav-main-title-3"),
+        title: t("nav-complaint-title-3"),
         url: "#",
-        icon: BookOpen,
-        items: [
-          {
-            title: "Introduction",
-            url: "#",
-          },
-          {
-            title: "Get Started",
-            url: "#",
-          },
-          {
-            title: "Tutorials",
-            url: "#",
-          },
-          {
-            title: "Changelog",
-            url: "#",
-          },
-        ],
+        icon: Archive,
+        isActive: false,
+        onClick: handleArchiveCom,
+      },
+    ],
+    NavUserOfficer: [
+      {
+        title: t("nav-user-officer-title-1"),
+        url: "#",
+        icon: BookUser,
+        isActive: false,
+        onClick: handleListCom,
       },
       {
-        title: t("nav-main-title-4"),
+        title: t("nav-user-officer-title-2"),
         url: "#",
-        icon: Settings2,
-        items: [
-          {
-            title: "General",
-            url: "#",
-          },
-          {
-            title: "Team",
-            url: "#",
-          },
-          {
-            title: "Billing",
-            url: "#",
-          },
-          {
-            title: "Limits",
-            url: "#",
-          },
-        ],
+        icon: UserRoundCog,
+        isActive: false,
+        onClick: handleCreateCom,
+      },
+    ],
+    NavCommunication: [
+      {
+        title: t("nav-communication-title-1"),
+        url: "#",
+        icon: MessageCircleDashed,
+        isActive: false,
+        onClick: handleListCom,
+      },
+      {
+        title: t("nav-communication-title-2"),
+        url: "#",
+        icon: Bell,
+        isActive: false,
+        onClick: handleCreateCom,
+      },
+    ],
+    NavAnalytics: [
+      {
+        title: t("nav-analytics-title-1"),
+        url: "#",
+        icon: ChartArea,
+        isActive: false,
+        onClick: handleListCom,
       },
     ],
     navReport: [
@@ -160,7 +154,7 @@ export function AppSidebar({
         title: t("nav-report-title-1"),
         url: "#",
         icon: SquareTerminal,
-        isActive: true,
+        isActive: false,
         items: [
           {
             title: "History",
@@ -244,6 +238,10 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavComplaint items={data.NavComplaint} />
+        <NavUserOfficer items={data.NavUserOfficer} />
+        <NavCommunication items={data.NavCommunication} />
+        <NavAnalytics items={data.NavAnalytics} />
         <NavReport items={data.navReport} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
