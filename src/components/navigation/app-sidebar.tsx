@@ -40,18 +40,30 @@ import { NavUserOfficer } from "./nav-user-officer";
 import { NavCommunication } from "./nav-communication";
 import { NavAnalytics } from "./nav-analytics";
 
+interface AppSidebarProps {
+  handleDashboard: () => void;
+  handleListCom: () => void;
+  handleCreateCom: () => void;
+  handleArchiveCom: () => void;
+  handleReporterData: () => void;
+  handleStaffManagement: () => void;
+  handleChat: () => void;
+  handleNotification: () => void;
+  handleStatistics: () => void;
+}
+
 export function AppSidebar({
   handleDashboard,
   handleListCom,
   handleCreateCom,
   handleArchiveCom,
+  handleStatistics,
+  handleNotification,
+  handleChat,
+  handleStaffManagement,
+  handleReporterData,
   ...props
-}: {
-  handleDashboard: () => void;
-  handleListCom: () => void;
-  handleCreateCom: () => void;
-  handleArchiveCom: () => void;
-} & React.ComponentProps<typeof Sidebar>) {
+}: AppSidebarProps & React.ComponentProps<typeof Sidebar>) {
   const t = useTranslations("SideBar");
   const data = {
     user: {
@@ -114,14 +126,14 @@ export function AppSidebar({
         url: "#",
         icon: BookUser,
         isActive: false,
-        onClick: handleListCom,
+        onClick: handleReporterData,
       },
       {
         title: t("nav-user-officer-title-2"),
         url: "#",
         icon: UserRoundCog,
         isActive: false,
-        onClick: handleCreateCom,
+        onClick: handleStaffManagement,
       },
     ],
     NavCommunication: [
@@ -130,14 +142,14 @@ export function AppSidebar({
         url: "#",
         icon: MessageCircleDashed,
         isActive: false,
-        onClick: handleListCom,
+        onClick: handleChat,
       },
       {
         title: t("nav-communication-title-2"),
         url: "#",
         icon: Bell,
         isActive: false,
-        onClick: handleCreateCom,
+        onClick: handleNotification,
       },
     ],
     NavAnalytics: [
@@ -146,7 +158,7 @@ export function AppSidebar({
         url: "#",
         icon: ChartArea,
         isActive: false,
-        onClick: handleListCom,
+        onClick: handleStatistics,
       },
     ],
     navReport: [
@@ -232,7 +244,7 @@ export function AppSidebar({
     ],
   };
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="border-none">
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>

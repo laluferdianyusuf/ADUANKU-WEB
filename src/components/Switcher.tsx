@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useTransition } from "react";
 import { useLocale } from "use-intl";
 import { Button } from "@/components/ui/button";
@@ -17,12 +17,15 @@ import EN from "@/flags/en.svg";
 export default function Switcher() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const pathname = usePathname();
   const localeActive = useLocale();
   const onSelectChange = (lang: string) => {
     startTransition(() => {
-      router.replace(`/${lang}`);
+      const newPath = pathname.replace(/^\/(id|en)/, `/${lang}`);
+      router.replace(newPath);
     });
   };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
