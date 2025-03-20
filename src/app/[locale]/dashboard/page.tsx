@@ -1,6 +1,7 @@
 "use client";
 import { SectionCards } from "@/components/card/section-cards";
 import { ChartAreaInteractive } from "@/components/chart/area-chat-interactive";
+import { FormCustom } from "@/components/form/form-custom";
 import { AppSidebar } from "@/components/navigation/app-sidebar";
 import Switcher from "@/components/Switcher";
 import { ComplaintTable } from "@/components/table/complaint-table";
@@ -74,12 +75,7 @@ export default function Home() {
       case "create complaint":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4 ">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-              <div className="aspect-video rounded-xl bg-blue-300/50" />
-              <div className="aspect-video rounded-xl bg-blue-300/50" />
-              <div className="aspect-video rounded-xl bg-blue-300/50" />
-            </div>
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-blue-300/50 md:min-h-min" />
+            <FormCustom />
           </div>
         );
       case "archive complaint":
@@ -96,12 +92,7 @@ export default function Home() {
       case "reporter data":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4 ">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-              <div className="aspect-video rounded-xl bg-yellow-300/50" />
-              <div className="aspect-video rounded-xl bg-yellow-300/50" />
-              <div className="aspect-video rounded-xl bg-yellow-300/50" />
-            </div>
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-yellow-300/50 md:min-h-min" />
+            <ComplaintTable />
           </div>
         );
       case "staff management":
