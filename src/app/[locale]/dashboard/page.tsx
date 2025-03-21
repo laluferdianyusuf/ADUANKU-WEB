@@ -186,7 +186,7 @@ export default function Home() {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <div>
+          <div className="flex relative">
             <InputCustom
               classname=""
               Icon={Search}
