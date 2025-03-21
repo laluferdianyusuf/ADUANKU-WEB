@@ -37,6 +37,7 @@ export default function Switcher() {
         align="end"
         defaultValue={localeActive}
         aria-disabled={isPending}
+        className="bg-sidebar"
       >
         <DropdownMenuItem onClick={() => onSelectChange("id")}>
           Indonesia

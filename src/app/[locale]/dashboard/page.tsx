@@ -2,6 +2,7 @@
 import { SectionCards } from "@/components/card/section-cards";
 import { ChartAreaInteractive } from "@/components/chart/area-chat-interactive";
 import { FormCustom } from "@/components/form/form-custom";
+import { InputCustom } from "@/components/input/input-custom";
 import { AppSidebar } from "@/components/navigation/app-sidebar";
 import Switcher from "@/components/Switcher";
 import { ComplaintTable } from "@/components/table/complaint-table";
@@ -18,6 +19,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Search, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Home() {
@@ -172,7 +174,7 @@ export default function Home() {
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between">
           <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger className="ml-1 cursor-pointer" />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
@@ -183,6 +185,14 @@ export default function Home() {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
+          </div>
+          <div>
+            <InputCustom
+              classname=""
+              Icon={Search}
+              ClearIcon={X}
+              isSearch={true}
+            />
           </div>
           <div className="flex gap-3 pr-10">
             <Switcher />
