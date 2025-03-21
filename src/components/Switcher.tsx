@@ -10,9 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
-import ID from "@/flags/id.svg";
-import EN from "@/flags/en.svg";
+import { Globe } from "lucide-react";
 
 export default function Switcher() {
   const [isPending, startTransition] = useTransition();
@@ -28,13 +26,10 @@ export default function Switcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          {localeActive === "id" ? (
-            <Image src={ID} alt="Indonesia Flag" width={20} height={20} />
-          ) : (
-            <Image src={EN} alt="English Flag" width={20} height={20} />
-          )}
+      <DropdownMenuTrigger asChild className="w-auto">
+        <Button variant="ghost" size="icon" className="px-3">
+          {localeActive === "id" ? <div>id</div> : <div>en</div>}
+          <Globe />
           <span className="sr-only">Toggle Languages</span>
         </Button>
       </DropdownMenuTrigger>

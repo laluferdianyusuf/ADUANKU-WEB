@@ -68,19 +68,19 @@ export default function Home() {
         );
       case "complaint list":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <ComplaintTable />
           </div>
         );
       case "create complaint":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <FormCustom />
           </div>
         );
       case "archive complaint":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-purple-300/50" />
               <div className="aspect-video rounded-xl bg-purple-300/50" />
@@ -91,13 +91,13 @@ export default function Home() {
         );
       case "reporter data":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <ComplaintTable />
           </div>
         );
       case "staff management":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-orange-300/50" />
               <div className="aspect-video rounded-xl bg-orange-300/50" />
@@ -108,7 +108,7 @@ export default function Home() {
         );
       case "live chat":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-cyan-300/50" />
               <div className="aspect-video rounded-xl bg-cyan-300/50" />
@@ -119,7 +119,7 @@ export default function Home() {
         );
       case "notification":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-fuchsia-300/50" />
               <div className="aspect-video rounded-xl bg-fuchsia-300/50" />
@@ -130,7 +130,7 @@ export default function Home() {
         );
       case "statistics":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4 ">
+          <div className="flex flex-1 flex-col gap-4 p-4">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="aspect-video rounded-xl bg-pink-300/50" />
               <div className="aspect-video rounded-xl bg-pink-300/50" />
@@ -142,13 +142,15 @@ export default function Home() {
 
       default:
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-              <div className="aspect-video rounded-xl bg-muted/50" />
-              <div className="aspect-video rounded-xl bg-muted/50" />
-              <div className="aspect-video rounded-xl bg-muted/50" />
+          <div className="flex flex-1 flex-col">
+            <div className="@container/main flex flex-1 flex-col gap-2">
+              <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+                <SectionCards />
+                <div className="px-4 lg:px-6">
+                  <ChartAreaInteractive />
+                </div>
+              </div>
             </div>
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
           </div>
         );
     }
@@ -168,7 +170,7 @@ export default function Home() {
         handleStatistics={handleStatistics}
       />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between bg-sidebar">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -182,12 +184,14 @@ export default function Home() {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <div className="flex gap-3 pr-5">
-            <ModeToggle />
+          <div className="flex gap-3 pr-10">
             <Switcher />
+            <ModeToggle />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">{renderContent()}</div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          {renderContent()}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );
