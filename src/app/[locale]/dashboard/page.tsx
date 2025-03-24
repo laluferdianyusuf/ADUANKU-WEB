@@ -21,6 +21,9 @@ import {
 } from "@/components/ui/sidebar";
 import { Search, X } from "lucide-react";
 import { useState } from "react";
+import CardInformation from "@/components/card/card-information";
+import { Button } from "@/components/ui/button";
+import ButtonComponent from "@/components/button/button-component";
 
 export default function Home() {
   const [activeMenu, setActiveMenu] = useState<string>("dashboard");
@@ -146,13 +149,9 @@ export default function Home() {
         );
       case "information":
         return (
-          <div className="flex flex-1 flex-col gap-4 p-4">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-              <div className="aspect-video rounded-xl bg-rose-300/50" />
-              <div className="aspect-video rounded-xl bg-rose-300/50" />
-              <div className="aspect-video rounded-xl bg-rose-300/50" />
-            </div>
-            <div className="flex-1 rounded-xl bg-rose-300/50 md:min-h-min" />
+          <div className="flex flex-col gap-4 p-4 ">
+            <ButtonComponent className={"self-end"}></ButtonComponent>
+            <CardInformation />
           </div>
         );
 
