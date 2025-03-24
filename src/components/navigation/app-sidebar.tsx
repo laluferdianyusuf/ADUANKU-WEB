@@ -3,14 +3,8 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  SquareTerminal,
   Building2,
   LayoutList,
   FilePlus,
@@ -24,7 +18,6 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/navigation/nav-main";
-import { NavProjects } from "@/components/navigation/nav-projects";
 import { NavUser } from "@/components/navigation/nav-user";
 import { TeamSwitcher } from "@/components/navigation/team-switcher";
 import {
@@ -34,7 +27,6 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { NavReport } from "./nav-reports";
 import { useTranslations } from "next-intl";
 import { NavComplaint } from "./nav-complaint";
 import { NavUserOfficer } from "./nav-user-officer";
@@ -174,87 +166,6 @@ export function AppSidebar({
         onClick: handleInformation,
       },
     ],
-    navReport: [
-      {
-        title: t("nav-report-title-1"),
-        url: "#",
-        icon: SquareTerminal,
-        isActive: false,
-        items: [
-          {
-            title: "History",
-            url: "#",
-          },
-          {
-            title: "Starred",
-            url: "#",
-          },
-          {
-            title: "Settings",
-            url: "#",
-          },
-        ],
-      },
-      {
-        title: t("nav-report-title-2"),
-        url: "#",
-        icon: Bot,
-        items: [
-          {
-            title: "Genesis",
-            url: "#",
-          },
-          {
-            title: "Explorer",
-            url: "#",
-          },
-          {
-            title: "Quantum",
-            url: "#",
-          },
-        ],
-      },
-      {
-        title: t("nav-report-title-3"),
-        url: "#",
-        icon: BookOpen,
-        items: [
-          {
-            title: "Introduction",
-            url: "#",
-          },
-          {
-            title: "Get Started",
-            url: "#",
-          },
-          {
-            title: "Tutorials",
-            url: "#",
-          },
-          {
-            title: "Changelog",
-            url: "#",
-          },
-        ],
-      },
-    ],
-    projects: [
-      {
-        name: "Design Engineering",
-        url: "#",
-        icon: Frame,
-      },
-      {
-        name: "Sales & Marketing",
-        url: "#",
-        icon: PieChart,
-      },
-      {
-        name: "Travel",
-        url: "#",
-        icon: Map,
-      },
-    ],
   };
   return (
     <Sidebar collapsible="icon" {...props} className="">
@@ -268,8 +179,6 @@ export function AppSidebar({
         <NavCommunication items={data.NavCommunication} />
         <NavAnalytics items={data.NavAnalytics} />
         <NavInformation items={data.NavInformation} />
-        <NavReport items={data.navReport} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
