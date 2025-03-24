@@ -22,7 +22,6 @@ import {
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 import CardInformation from "@/components/card/card-information";
-import { Button } from "@/components/ui/button";
 import ButtonComponent from "@/components/button/button-component";
 
 export default function Home() {

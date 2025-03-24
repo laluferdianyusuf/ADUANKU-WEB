@@ -7,12 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const data = [
   {
@@ -44,8 +38,8 @@ const data = [
 export default function CardInformation() {
   return (
     <div className="grid grid-cols-3 items-start gap-4">
-      {data.map((item) => (
-        <Card>
+      {data.map((item, index) => (
+        <Card key={index}>
           <CardHeader>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.desc}</CardDescription>
