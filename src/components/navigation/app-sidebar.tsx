@@ -20,6 +20,7 @@ import {
   Bell,
   ChartArea,
   Archive,
+  Book,
 } from "lucide-react";
 
 import { NavMain } from "@/components/navigation/nav-main";
@@ -39,6 +40,7 @@ import { NavComplaint } from "./nav-complaint";
 import { NavUserOfficer } from "./nav-user-officer";
 import { NavCommunication } from "./nav-communication";
 import { NavAnalytics } from "./nav-analytics";
+import { NavInformation } from "./nav-information";
 
 interface AppSidebarProps {
   handleDashboard: () => void;
@@ -50,6 +52,7 @@ interface AppSidebarProps {
   handleChat: () => void;
   handleNotification: () => void;
   handleStatistics: () => void;
+  handleInformation: () => void;
 }
 
 export function AppSidebar({
@@ -62,6 +65,7 @@ export function AppSidebar({
   handleChat,
   handleStaffManagement,
   handleReporterData,
+  handleInformation,
   ...props
 }: AppSidebarProps & React.ComponentProps<typeof Sidebar>) {
   const t = useTranslations("SideBar");
@@ -161,6 +165,15 @@ export function AppSidebar({
         onClick: handleStatistics,
       },
     ],
+    NavInformation: [
+      {
+        title: t("nav-information-title-1"),
+        url: "#",
+        icon: Book,
+        isActive: false,
+        onClick: handleInformation,
+      },
+    ],
     navReport: [
       {
         title: t("nav-report-title-1"),
@@ -254,6 +267,7 @@ export function AppSidebar({
         <NavUserOfficer items={data.NavUserOfficer} />
         <NavCommunication items={data.NavCommunication} />
         <NavAnalytics items={data.NavAnalytics} />
+        <NavInformation items={data.NavInformation} />
         <NavReport items={data.navReport} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
