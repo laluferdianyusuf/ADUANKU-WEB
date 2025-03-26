@@ -23,6 +23,7 @@ import { Search, X } from "lucide-react";
 import { useState } from "react";
 import CardInformation from "@/components/card/card-information";
 import ButtonComponent from "@/components/button/button-component";
+import DetailInformation from "@/app/contents/information/detail-information";
 
 export default function Home() {
   const [activeMenu, setActiveMenu] = useState<string>("dashboard");
@@ -32,6 +33,7 @@ export default function Home() {
   };
   const handleListCom = () => {
     setActiveMenu("complaint list");
+    0;
   };
   const handleCreateCom = () => {
     setActiveMenu("create complaint");
@@ -56,6 +58,9 @@ export default function Home() {
   };
   const handleInformation = () => {
     setActiveMenu("information");
+  };
+  const handleDetailsInformation = () => {
+    setActiveMenu("detail information");
   };
 
   const renderContent = () => {
@@ -150,7 +155,13 @@ export default function Home() {
         return (
           <div className="flex flex-col gap-4 p-4 ">
             <ButtonComponent className={"self-end"}></ButtonComponent>
-            <CardInformation />
+            <CardInformation onClick={handleDetailsInformation} />
+          </div>
+        );
+      case "detail information":
+        return (
+          <div className="flex flex-col gap-4 p-4 ">
+            <DetailInformation />
           </div>
         );
 
