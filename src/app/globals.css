@@ -122,3 +122,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: Sabino;
+  src: url(../assets/font/Sebino-Regular.ttf);
+}
+
+* {
+  font-family: Sabino;
+}
