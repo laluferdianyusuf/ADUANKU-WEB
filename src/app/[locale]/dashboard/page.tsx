@@ -6,6 +6,7 @@ import { InputCustom } from "@/components/input/input-custom";
 import { AppSidebar } from "@/components/navigation/app-sidebar";
 import Switcher from "@/components/Switcher";
 import { ComplaintTable } from "@/components/table/complaint-table";
+import { InterestTable } from "@/components/table/interest-table";
 import { ModeToggle } from "@/components/ToggleThemes";
 import {
   Breadcrumb,
@@ -62,6 +63,9 @@ export default function Home() {
   const handleDetailsInformation = () => {
     setActiveMenu("detail information");
   };
+  const handleInterest = () => {
+    setActiveMenu("interest");
+  };
 
   const renderContent = () => {
     switch (activeMenu) {
@@ -81,7 +85,7 @@ export default function Home() {
       case "complaint list":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4">
-            <ComplaintTable />
+            <ComplaintTable onClick={() => setActiveMenu("create complaint")} />
           </div>
         );
       case "create complaint":
@@ -104,7 +108,7 @@ export default function Home() {
       case "reporter data":
         return (
           <div className="flex flex-1 flex-col gap-4 p-4">
-            <ComplaintTable />
+            <ComplaintTable onClick={() => setActiveMenu("create complaint")} />
           </div>
         );
       case "staff management":
@@ -164,6 +168,12 @@ export default function Home() {
             <DetailInformation />
           </div>
         );
+      case "interest":
+        return (
+          <div className="flex flex-col gap-4 p-4 ">
+            <InterestTable />
+          </div>
+        );
 
       default:
         return (
@@ -194,6 +204,7 @@ export default function Home() {
         handleNotification={handleNotifications}
         handleStatistics={handleStatistics}
         handleInformation={handleInformation}
+        handleInterest={handleInterest}
       />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between">
