@@ -33,6 +33,7 @@ import { NavUserOfficer } from "./nav-user-officer";
 import { NavCommunication } from "./nav-communication";
 import { NavAnalytics } from "./nav-analytics";
 import { NavInformation } from "./nav-information";
+import { NavInterest } from "./nav-interest";
 
 interface AppSidebarProps {
   handleDashboard: () => void;
@@ -45,6 +46,7 @@ interface AppSidebarProps {
   handleNotification: () => void;
   handleStatistics: () => void;
   handleInformation: () => void;
+  handleInterest: () => void;
 }
 
 export function AppSidebar({
@@ -58,6 +60,7 @@ export function AppSidebar({
   handleStaffManagement,
   handleReporterData,
   handleInformation,
+  handleInterest,
   ...props
 }: AppSidebarProps & React.ComponentProps<typeof Sidebar>) {
   const t = useTranslations("SideBar");
@@ -166,6 +169,15 @@ export function AppSidebar({
         onClick: handleInformation,
       },
     ],
+    NavInterest: [
+      {
+        title: t("nav-interest-title-1"),
+        url: "#",
+        icon: Book,
+        isActive: false,
+        onClick: handleInterest,
+      },
+    ],
   };
   return (
     <Sidebar collapsible="icon" {...props} className="">
@@ -179,6 +191,7 @@ export function AppSidebar({
         <NavCommunication items={data.NavCommunication} />
         <NavAnalytics items={data.NavAnalytics} />
         <NavInformation items={data.NavInformation} />
+        <NavInterest items={data.NavInterest} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
