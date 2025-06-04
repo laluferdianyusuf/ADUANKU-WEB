@@ -71,7 +71,9 @@ export default function DetailInformation() {
             <h2>Linked Doc</h2>
           </div>
           <div className="mt-5">
-            <p className="p-2 bg-gray-100 rounded-md">Download</p>
+            <p className="p-2 bg-gray-100 rounded-md cursor-pointer">
+              Download
+            </p>
           </div>
         </div>
       </div>

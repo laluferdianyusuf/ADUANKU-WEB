@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,7 +13,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  FileDown,
+  ListFilter,
+  MoreHorizontal,
+  Plus,
+  Search,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -35,45 +43,70 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Separator } from "../ui/separator";
+import { DatePickerWithRange } from "../ui/date-range-picker";
+import {
+  ArrowDownOnSquareIcon,
+  ArrowDownOnSquareStackIcon,
+  DocumentArrowDownIcon,
+} from "@heroicons/react/24/outline";
 
 const data: Payment[] = [
   {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@example.com",
+    id: "number",
+    name: "diva",
+    kekerasan: "fisik",
+    lokus: "Area kerja",
+    interest: "Memasak",
+    date: "21-September-2025",
+    status: "pending",
   },
   {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@example.com",
+    id: "number",
+    name: "jihan",
+    kekerasan: "fisik",
+    lokus: "Area kerja",
+    interest: "Menari",
+    date: "21-September-2025",
+    status: "pending",
   },
   {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@example.com",
+    id: "number",
+    name: "hana",
+    kekerasan: "fisik",
+    lokus: "Area kerja",
+    interest: "Menjahit",
+    date: "21-September-2025",
+    status: "pending",
   },
   {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@example.com",
+    id: "number",
+    name: "kolo",
+    kekerasan: "fisik",
+    lokus: "Area kerja",
+    interest: "Menenun",
+    date: "21-September-2025",
+    status: "pending",
   },
   {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@example.com",
+    id: "number",
+    name: "dede",
+    kekerasan: "fisik",
+    lokus: "Area kerja",
+    interest: "Mengajar",
+    date: "21-September-2025",
+    status: "pending",
   },
 ];
 
 export type Payment = {
   id: string;
-  amount: number;
+  name: string;
+  kekerasan: string;
+  lokus: string;
   status: "pending" | "processing" | "success" | "failed";
-  email: string;
+  interest: string;
+  date: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -102,41 +135,98 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: ({ column }) => {
+      return <div className="uppercase flex items-left justify-left">Name</div>;
+    },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize items-left justify-left">
+        {row.getValue("name")}
+        <div className="flex flex-row gap-2">
+          <div>{row.original.kekerasan}</div>
+          <div>-</div>
+          <div>{row.original.lokus}</div>
+        </div>
+      </div>
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "interest",
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown />
-        </Button>
+        <div className="uppercase flex items-center justify-center">
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="uppercase"
+          >
+            Interest
+            <ArrowUpDown />
+          </Button>
+        </div>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize flex items-center justify-center">
+        {row.getValue("interest")}
+      </div>
+    ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <div className="flex items-center justify-center uppercase">Date</div>
+      );
     },
+    cell: ({ row }) => (
+      <div className="lowercase flex items-center justify-center">
+        {row.getValue("date")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "Pengadu",
+    header: ({ column }) => {
+      return (
+        <div className="uppercase flex items-center justify-center">
+          Pengadu
+        </div>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="lowercase flex items-center justify-center">
+        {row.getValue("Pengadu")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "Pendamping",
+    header: ({ column }) => {
+      return (
+        <div className="uppercase flex items-center justify-center">
+          Pendamping
+        </div>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="lowercase flex items-center justify-center">
+        {row.getValue("Pendamping")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => {
+      return (
+        <div className="uppercase flex items-center justify-center">Status</div>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="lowercase flex items-center justify-center">
+        {row.getValue("status")}
+      </div>
+    ),
   },
   {
     id: "actions",
@@ -169,14 +259,15 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export function ComplaintTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+type ComplaintProps = {
+  onClick: () => void;
+};
+
+export function ComplaintTable({ onClick }: ComplaintProps) {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -197,18 +288,104 @@ export function ComplaintTable() {
     },
   });
 
+  const [activeTab, setActiveTab] = useState("all");
+  const [underlineStyle, setUnderlineStyle] = useState({});
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const tabs = [
+    { label: "All client", value: "all" },
+    { label: "Ongoing", value: "ongoing" },
+    { label: "Closed", value: "closed" },
+  ];
+
+  useEffect(() => {
+    const activeRef = tabRefs.current[activeTab];
+    if (activeRef) {
+      const { offsetLeft, offsetWidth } = activeRef;
+      setUnderlineStyle({
+        left: offsetLeft,
+        width: offsetWidth,
+      });
+    }
+  }, [activeTab]);
+
   return (
     <div className="w-full">
+      <div className="flex">
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, ad!
+        </p>
+        <div className="ml-auto flex gap-4">
+          <button className="flex border-1 border-gray-300 p-2 rounded-md gap-1 cursor-pointer item-center">
+            <ArrowDownOnSquareStackIcon className="size-5" />
+            Export
+          </button>
+          <button
+            onClick={onClick}
+            className="bg-[#6d25e8] items-center text-white flex capitalize border-1 border-gray-300 p-2 rounded-md gap-1 cursor-pointer"
+          >
+            <Plus />
+            add new complaint.
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex gap-7 mt-5 font-medium relative">
+          {tabs.map((tab) => (
+            <button
+              key={tab.value}
+              ref={(el) => {
+                tabRefs.current[tab.value] = el;
+              }}
+              onClick={() => setActiveTab(tab.value)}
+              className={`cursor-pointer hover:text-[#432f94] pb-3 ${
+                activeTab === tab.value ? "text-[#432f94] font-semibold" : ""
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+          {/* Animated Underline */}
+          <div
+            className="absolute bottom-[-2] h-[2px] bg-[#432f94] transition-all duration-300"
+            style={underlineStyle}
+          />
+        </div>
+
+        <Separator className="" />
+      </div>
+
       <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+        <div className="flex flex-row border-1 rounded-sm items-center px-2 ">
+          <Search />
+          <Input
+            placeholder="Search For Complaint..."
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm border-none shadow-none"
+          />
+        </div>
+        <div className="flex ml-auto gap-3">
+          <DatePickerWithRange />
+          <button
+            className="flex items-center justify-center gap-1 p-1.5 rounded-md max-w-sm border-1 w-28"
+            value={(table.getColumn("date")?.getFilterValue() as string) ?? ""}
+          >
+            <ListFilter />
+            Filter
+          </button>
+        </div>
+        {/* <Button
+          value={(table.getColumn("date")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("date")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
+          className="bg-white border-1 max-w-sm w-36 ml-auto"
+        /> */}
+        {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
               Columns <ChevronDown />
@@ -233,7 +410,7 @@ export function ComplaintTable() {
                 );
               })}
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
       <div className="rounded-md border">
         <Table className="">
